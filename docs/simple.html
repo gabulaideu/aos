@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <script>
+      (function() {
+        const savedLang = localStorage.getItem('aos-lang');
+        const userLang = savedLang || (navigator.language.startsWith('zh') ? 'zh-CN' : 'en');
+        document.documentElement.setAttribute('lang', userLang);
+      })();
+    </script>
+    <title>AOS Modern - Core Simple Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos-modern@latest/dist/aos.css" />
+  </head>
+  <body>
+    <!-- Background Glowing Blobs -->
+    <div class="bg-blobs">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="demo-header">
+      <div class="header-content">
+        <a href="index.html" class="logo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 3L3 12h4l5-5 5 5h4L12 3z" fill="url(#logo-grad-top)" />
+            <path d="M12 21l9-9h-4l-5 5-5-5H3l9 9z" fill="url(#logo-grad-bottom)" opacity="0.9" />
+            <circle cx="12" cy="12" r="2.5" fill="url(#logo-grad-core)" />
+            <defs>
+              <linearGradient id="logo-grad-top" x1="3" y1="3" x2="21" y2="12" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#00f2fe" />
+                <stop offset="1" stop-color="#4facfe" />
+              </linearGradient>
+              <linearGradient id="logo-grad-bottom" x1="3" y1="12" x2="21" y2="21" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#f355da" />
+                <stop offset="1" stop-color="#7000ff" />
+              </linearGradient>
+              <radialGradient id="logo-grad-core" cx="12" cy="12" r="2.5" fx="12" fy="12" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#ffffff" />
+                <stop offset="1" stop-color="#00f2fe" />
+              </radialGradient>
+            </defs>
+          </svg>
+          AOS Modern
+        </a>
+        <nav class="framework-nav">
+          <a href="simple.html" class="active">Core (Simple)</a>
+          <a href="async.html">Core (Async)</a>
+          <a href="react.html">React Hook</a>
+          <a href="vue.html">Vue Plugin</a>
+          <button class="btn lang-btn" onclick="toggleLanguage()">
+            <span class="lang-zh">EN</span>
+            <span class="lang-en">中文</span>
+          </button>
+          <a href="https://github.com/gabulaideu/aos" class="btn github-btn" target="_blank">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12C2 16.82 5.12 20.9 9.47 22.35C9.97 22.44 10.15 22.13 10.15 21.87C10.15 21.64 10.14 21.03 10.14 20.21C7.07 20.88 6.42 18.73 6.42 18.73C5.92 17.46 5.2 17.12 5.2 17.12C4.19 16.43 5.28 16.44 5.28 16.44C6.39 16.52 6.98 17.58 6.98 17.58C7.97 19.28 9.58 18.79 10.21 18.51C10.31 17.79 10.6 17.3 10.92 17.02C8.47 16.74 5.89 15.79 5.89 11.57C5.89 10.37 6.32 9.39 7.03 8.62C6.92 8.34 6.54 7.22 7.14 5.71C7.14 5.71 8.06 5.42 10.16 6.84C11.04 6.6 11.98 6.48 12.92 6.48C13.86 6.48 14.8 6.6 15.68 6.84C17.77 5.42 18.69 5.71 18.69 5.71C19.29 7.22 18.91 8.34 18.8 8.62C19.51 9.39 19.94 10.37 19.94 11.57C19.94 15.8 17.36 16.74 14.9 17.01C15.3 17.35 15.65 18.03 15.65 19.07C15.65 20.56 15.64 21.76 15.64 22.12C15.64 22.39 15.82 22.7 16.33 22.6C20.68 21.15 23.8 17.07 23.8 12.35C23.8 7.63 20.68 3.55 16.33 2.1C16.33 2.1 12 2 12 2Z"/>
+            </svg>
+            GitHub
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="demo-info">
+      <h2>
+        <span class="lang-zh">核心原生演示 (简单静态)</span>
+        <span class="lang-en">Core Native Demo (Simple & Static)</span>
+      </h2>
+      <p class="lang-zh">
+        此示例展示了在不需要任何框架的情况下直接使用原生 JavaScript 引入 AOS Modern。
+        通过为 HTML 元素添加相应的 <code>data-aos</code> 属性来声明动画。
+      </p>
+      <p class="lang-en">
+        This demo showcases integrating AOS Modern directly with native JavaScript, without any framework.
+        Simply declare animations using <code>data-aos</code> attributes on HTML elements.
+      </p>
+    </div>
+
+    <div id="transcroller-body" class="aos-all">
+      <div class="aos-item" data-aos="fade-up">
+        <div class="aos-item__inner"><h3>1</h3><span>data-aos="fade-up"</span></div>
+      </div>
+      <div class="aos-item" data-aos="fade-down">
+        <div class="aos-item__inner"><h3>2</h3><span>data-aos="fade-down"</span></div>
+      </div>
+      <div class="aos-item" data-aos="zoom-out-down">
+        <div class="aos-item__inner"><h3>3</h3><span>data-aos="zoom-out-down"</span></div>
+      </div>
+      <div class="aos-item" data-aos="flip-down">
+        <div class="aos-item__inner"><h3>4</h3><span>data-aos="flip-down"</span></div>
+      </div>
+      <div class="aos-item" data-aos="flip-up">
+        <div class="aos-item__inner"><h3>5</h3><span>data-aos="flip-up"</span></div>
+      </div>
+      <div class="aos-item" data-aos="fade-down">
+        <div class="aos-item__inner"><h3>6</h3><span>data-aos="fade-down"</span></div>
+      </div>
+      <div class="aos-item" data-aos="fade-in">
+        <div class="aos-item__inner"><h3>7</h3><span>data-aos="fade-in"</span></div>
+      </div>
+      <div class="aos-item" data-aos="fade-down">
+        <div class="aos-item__inner"><h3>8</h3><span>data-aos="fade-down"</span></div>
+      </div>
+      <div class="aos-item" data-aos="fade-in">
+        <div class="aos-item__inner"><h3>9</h3><span>data-aos="fade-in"</span></div>
+      </div>
+      <div class="aos-item" data-aos="fade-down">
+        <div class="aos-item__inner"><h3>10</h3><span>data-aos="fade-down"</span></div>
+      </div>
+      <div class="aos-item" data-aos="fade-up">
+        <div class="aos-item__inner"><h3>11</h3><span>data-aos="fade-up"</span></div>
+      </div>
+      <div class="aos-item" data-aos="fade-down">
+        <div class="aos-item__inner"><h3>12</h3><span>data-aos="fade-down"</span></div>
+      </div>
+      <div class="aos-item" data-aos="fade-in">
+        <div class="aos-item__inner"><h3>13</h3><span>data-aos="fade-in"</span></div>
+      </div>
+      <div class="aos-item" data-aos="fade-up">
+        <div class="aos-item__inner"><h3>14</h3><span>data-aos="fade-up"</span></div>
+      </div>
+      <div class="aos-item" data-aos="fade-in">
+        <div class="aos-item__inner"><h3>15</h3><span>data-aos="fade-in"</span></div>
+      </div>
+      <div class="aos-item" data-aos="fade-up">
+        <div class="aos-item__inner"><h3>16</h3><span>data-aos="fade-up"</span></div>
+      </div>
+      <div class="aos-item" data-aos="fade-down">
+        <div class="aos-item__inner"><h3>17</h3><span>data-aos="fade-down"</span></div>
+      </div>
+      <div class="aos-item" data-aos="fade-up">
+        <div class="aos-item__inner"><h3>18</h3><span>data-aos="fade-up"</span></div>
+      </div>
+      <div class="aos-item" data-aos="zoom-out">
+        <div class="aos-item__inner"><h3>19</h3><span>data-aos="zoom-out"</span></div>
+      </div>
+      <div class="aos-item" data-aos="fade-up">
+        <div class="aos-item__inner"><h3>20</h3><span>data-aos="fade-up"</span></div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="demo-footer">
+      <div class="footer-content">
+        <a href="index.html" class="footer-logo">AOS Modern</a>
+        <div class="footer-links">
+          <a href="simple.html">
+            <span class="lang-zh">原生 Core</span>
+            <span class="lang-en">Core JS</span>
+          </a>
+          <a href="async.html">
+            <span class="lang-zh">DOM 侦测</span>
+            <span class="lang-en">DOM Detection</span>
+          </a>
+          <a href="react.html">
+            <span class="lang-zh">React Hooks</span>
+            <span class="lang-en">React Hook</span>
+          </a>
+          <a href="vue.html">
+            <span class="lang-zh">Vue 插件</span>
+            <span class="lang-en">Vue Plugin</span>
+          </a>
+        </div>
+        <div class="footer-copy">
+          <p>Released under the <a href="https://github.com/gabulaideu/aos/blob/master/LICENSE" style="color: #60a5fa;" target="_blank">MIT License</a>. Created for the modern responsive web.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos-modern@latest/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        easing: 'ease-in-out-sine',
+        once: false
+      });
+
+      function toggleLanguage() {
+        const currentLang = document.documentElement.getAttribute('lang') || 'zh-CN';
+        const newLang = currentLang === 'zh-CN' ? 'en' : 'zh-CN';
+        setLanguage(newLang);
+      }
+
+      function setLanguage(lang) {
+        document.documentElement.setAttribute('lang', lang);
+        localStorage.setItem('aos-lang', lang);
+      }
+    </script>
+  </body>
+</html>

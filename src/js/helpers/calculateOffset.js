@@ -1,3 +1,5 @@
+import getOffset from './../libs/offset';
+
 /**
  * Calculate offset
  * basing on element's settings like:
@@ -5,12 +7,9 @@
  * - offset
  *
  * @param  {Node} el [Dom element]
- * @return {Integer} [Final offset that will be used to trigger animation in good position]
+ * @return {number} [Final offset that will be used to trigger animation in good position]
  */
-
-import getOffset from './../libs/offset';
-
-const calculateOffset = function (el, optionalOffset) {
+const calculateOffset = (el, optionalOffset) => {
   let elementOffsetTop = 0;
   let additionalOffset = 0;
   const windowHeight = window.innerHeight;
@@ -21,11 +20,18 @@ const calculateOffset = function (el, optionalOffset) {
   };
 
   if (attrs.offset && !isNaN(attrs.offset)) {
-    additionalOffset = parseInt(attrs.offset);
+    additionalOffset = parseInt(attrs.offset, 10);
   }
 
-  if (attrs.anchor && document.querySelectorAll(attrs.anchor)) {
-    el = document.querySelectorAll(attrs.anchor)[0];
+  if (attrs.anchor) {
+    try {
+      const anchorEl = document.querySelector(attrs.anchor);
+      if (anchorEl) {
+        el = anchorEl;
+      }
+    } catch (e) {
+      console.warn(`AOS: "${attrs.anchor}" is not a valid selector`, e);
+    }
   }
 
   elementOffsetTop = getOffset(el).top;

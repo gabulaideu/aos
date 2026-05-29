@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <script>
+      (function() {
+        const savedLang = localStorage.getItem('aos-lang');
+        const userLang = savedLang || (navigator.language.startsWith('zh') ? 'zh-CN' : 'en');
+        document.documentElement.setAttribute('lang', userLang);
+      })();
+    </script>
+    <title>AOS Modern - Next-Gen Scroll Animations</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta Tags for SEO -->
+    <meta name="description" content="AOS Modern: Animate on scroll library using modern browser APIs. Fast, lightweight, zero dependencies, and framework-friendly.">
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos-modern@latest/dist/aos.css" />
+  </head>
+  <body>
+    <!-- Background Glowing Blobs -->
+    <div class="bg-blobs">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="demo-header">
+      <div class="header-content">
+        <a href="#" class="logo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 3L3 12h4l5-5 5 5h4L12 3z" fill="url(#logo-grad-top)" />
+            <path d="M12 21l9-9h-4l-5 5-5-5H3l9 9z" fill="url(#logo-grad-bottom)" opacity="0.9" />
+            <circle cx="12" cy="12" r="2.5" fill="url(#logo-grad-core)" />
+            <defs>
+              <linearGradient id="logo-grad-top" x1="3" y1="3" x2="21" y2="12" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#00f2fe" />
+                <stop offset="1" stop-color="#4facfe" />
+              </linearGradient>
+              <linearGradient id="logo-grad-bottom" x1="3" y1="12" x2="21" y2="21" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#f355da" />
+                <stop offset="1" stop-color="#7000ff" />
+              </linearGradient>
+              <radialGradient id="logo-grad-core" cx="12" cy="12" r="2.5" fx="12" fy="12" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#ffffff" />
+                <stop offset="1" stop-color="#00f2fe" />
+              </radialGradient>
+            </defs>
+          </svg>
+          AOS Modern
+        </a>
+        <nav class="framework-nav">
+          <a href="simple.html">Core (Simple)</a>
+          <a href="async.html">Core (Async)</a>
+          <a href="react.html">React Hook</a>
+          <a href="vue.html">Vue Plugin</a>
+          <button class="btn lang-btn" onclick="toggleLanguage()">
+            <span class="lang-zh">EN</span>
+            <span class="lang-en">中文</span>
+          </button>
+          <a href="https://github.com/gabulaideu/aos" class="btn github-btn" target="_blank">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12C2 16.82 5.12 20.9 9.47 22.35C9.97 22.44 10.15 22.13 10.15 21.87C10.15 21.64 10.14 21.03 10.14 20.21C7.07 20.88 6.42 18.73 6.42 18.73C5.92 17.46 5.2 17.12 5.2 17.12C4.19 16.43 5.28 16.44 5.28 16.44C6.39 16.52 6.98 17.58 6.98 17.58C7.97 19.28 9.58 18.79 10.21 18.51C10.31 17.79 10.6 17.3 10.92 17.02C8.47 16.74 5.89 15.79 5.89 11.57C5.89 10.37 6.32 9.39 7.03 8.62C6.92 8.34 6.54 7.22 7.14 5.71C7.14 5.71 8.06 5.42 10.16 6.84C11.04 6.6 11.98 6.48 12.92 6.48C13.86 6.48 14.8 6.6 15.68 6.84C17.77 5.42 18.69 5.71 18.69 5.71C19.29 7.22 18.91 8.34 18.8 8.62C19.51 9.39 19.94 10.37 19.94 11.57C19.94 15.8 17.36 16.74 14.9 17.01C15.3 17.35 15.65 18.03 15.65 19.07C15.65 20.56 15.64 21.76 15.64 22.12C15.64 22.39 15.82 22.7 16.33 22.6C20.68 21.15 23.8 17.07 23.8 12.35C23.8 7.63 20.68 3.55 16.33 2.1C16.33 2.1 12 2 12 2Z"/>
+            </svg>
+            GitHub
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-text">
+        <span class="badge">AOS Modern v3.0.0</span>
+        <h1>
+          <span class="lang-zh">下一代页面滚动揭示动画库</span>
+          <span class="lang-en">Next-Gen Scroll Animation Library</span>
+        </h1>
+        <p class="lang-zh">基于原生现代浏览器 API 重新设计的滚动揭示动画库。更加轻量、零依赖，支持在页面滚动时流畅地唤起硬件加速的过渡动效。完美原生适配 React 与 Vue 生命周期。</p>
+        <p class="lang-en">AOS re-engineered for modern browsers. Lightweight, zero dependencies, hardware-accelerated transitions, and seamless integrations with React and Vue lifecycles.</p>
+        <div class="cta-group">
+          <a href="#playground" class="btn btn-primary">
+            <span class="lang-zh">进入游乐场</span>
+            <span class="lang-en">Playground</span>
+          </a>
+          <a href="#presets" class="btn btn-secondary">
+            <span class="lang-zh">预设效果墙</span>
+            <span class="lang-en">Presets Wall</span>
+          </a>
+        </div>
+      </div>
+      <div class="hero-mockup">
+        <div class="device-frame" data-aos="fade-left" data-aos-duration="1000">
+          <div class="device-screen">
+            <div class="mockup-item" data-aos="fade-up" data-aos-delay="100" data-aos-duration="600">
+              <div class="mockup-avatar"></div>
+              <div class="mockup-line"></div>
+            </div>
+            <div class="mockup-item" data-aos="fade-up" data-aos-delay="200" data-aos-duration="600">
+              <div class="mockup-avatar" style="background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));"></div>
+              <div class="mockup-line"></div>
+            </div>
+            <div class="mockup-item" data-aos="fade-up" data-aos-delay="300" data-aos-duration="600">
+              <div class="mockup-avatar" style="background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));"></div>
+              <div class="mockup-line"></div>
+            </div>
+            <div class="mockup-item" data-aos="fade-up" data-aos-delay="400" data-aos-duration="600">
+              <div class="mockup-line-short" style="margin-left: auto;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+      <div class="section-title">
+        <h2>
+          <span class="lang-zh">核心优势与亮点</span>
+          <span class="lang-en">Core Features & Highlights</span>
+        </h2>
+        <p class="lang-zh">不仅仅是现代化重写，更是针对现代 SPA 框架与移动端流畅度进行的全面革新。</p>
+        <p class="lang-en">More than just a rewrite—fully optimized for modern SPA frameworks and ultra-smooth mobile performance.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <h3>
+            <span class="lang-zh">硬件加速 / 卓越性能</span>
+            <span class="lang-en">Hardware Acceleration / Performance</span>
+          </h3>
+          <p class="lang-zh">彻底抛弃了传统的 window scroll 监听事件与防抖函数，全面基于原生硬件加速的 <code>IntersectionObserver</code> 架构，极大地降低了 CPU 和主线程的占用，保证移动端 60+ FPS 的极度流畅。</p>
+          <p class="lang-en">Completely replaces legacy scroll listeners with the native, hardware-accelerated <code>IntersectionObserver</code> API, reducing CPU overhead and delivering a buttery-smooth 60+ FPS on mobile.</p>
+        </div>
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>
+            <span class="lang-zh">零外部依赖</span>
+            <span class="lang-en">Zero Dependencies</span>
+          </h3>
+          <p class="lang-zh">移除了遗留的 Classlist-polyfill、Lodash 等重型包。整个库的编译产物精简，只专注于高效的核心动效绑定，避免为您的项目带来额外的代码体积负担。</p>
+          <p class="lang-en">Removed obsolete Classlist-polyfill, Lodash, and other heavy modules. Optimized bundle size to avoid overhead in your modern bundle.</p>
+        </div>
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          </div>
+          <h3>
+            <span class="lang-zh">原生 React & Vue 支持</span>
+            <span class="lang-en">Native React & Vue Support</span>
+          </h3>
+          <p class="lang-zh">官方内置对现代前端框架的原生分包绑定，提供 React Custom Hook (`useAOS`) 以及统一适配 Vue 2/3 的自定义指令 (`v-aos`)，完美适配 SPA 路由与组件挂载/卸载生命周期。</p>
+          <p class="lang-en">Built-in framework packages with React Custom Hook (<code>useAOS</code>) and Vue Directive (<code>v-aos</code>), matching SPA router changes and component lifecycles.</p>
+        </div>
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <h3>
+            <span class="lang-zh">动态 DOM 侦测</span>
+            <span class="lang-en">Dynamic DOM Detection</span>
+          </h3>
+          <p class="lang-zh">基于原生 <code>MutationObserver</code> 监听 DOM 树的变化。即使您是通过 Ajax 异步插入或动态加载的带 <code>data-aos</code> 属性的 DOM 元素，AOS 也能自动识别并绑定，无需手动 refresh。</p>
+          <p class="lang-en">Powered by the native <code>MutationObserver</code> API to watch DOM changes. Elements with <code>data-aos</code> dynamically added (e.g., via Ajax) are automatically animated without manual refreshes.</p>
+        </div>
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 12l10 5 10-5M2 17l10 5 10-5"/></svg>
+          </div>
+          <h3>
+            <span class="lang-zh">丰富预设 / 高度定制</span>
+            <span class="lang-en">Rich Presets & Highly Customizable</span>
+          </h3>
+          <p class="lang-zh">内置提供 50+ 种前卫预设动效（包含新增的模糊、倾斜、旋转、回弹与特技系列），并支持独立元素配置偏移触发距离、动画时长、延迟、缓动函数，极易定制专属动效。</p>
+          <p class="lang-en">Comes with 50+ premium preset animations (including new blur, skew, rotate, and springy back-ins). Easily customize offsets, duration, delay, and easing per element.</p>
+        </div>
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <h3>
+            <span class="lang-zh">SEO 友好 / 渐进增强</span>
+            <span class="lang-en">SEO Friendly & Progressive Enhancement</span>
+          </h3>
+          <p class="lang-zh">遵循渐进增强设计理念。在 JS 禁用或未完成加载时，网页内容依然完整无损地呈现给爬虫和用户，利用 IntersectionObserver 高效触发 class 激活，完美兼顾 SEO 与极佳视觉效果。</p>
+          <p class="lang-en">Designed with progressive enhancement. Page content remains fully readable by search engines and users even when JS is disabled. IntersectionObserver updates tags for optimal indexing.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Playground Section -->
+    <section class="playground" id="playground">
+      <div class="section-title">
+        <h2>
+          <span class="lang-zh">交互式配置游乐场 (Playground)</span>
+          <span class="lang-en">Interactive Configuration Playground</span>
+        </h2>
+        <p class="lang-zh">在左侧实时调整控制参数，可在右侧和下方即时预览动画效果并提取自动生成的集成代码。</p>
+        <p class="lang-en">Tweak parameters on the left to instantly preview animations on the right, and copy the generated integration code below.</p>
+      </div>
+
+      <div class="playground-container">
+        <!-- Controls Column -->
+        <div class="playground-controls">
+          <div class="control-group">
+            <label for="animSelect">
+              <span class="lang-zh">动画类型 (Animation)</span>
+              <span class="lang-en">Animation Type</span>
+            </label>
+            <select id="animSelect" onchange="updatePlayground()">
+              <optgroup label="Fades">
+                <option value="fade">fade</option>
+                <option value="fade-up" selected>fade-up</option>
+                <option value="fade-down">fade-down</option>
+                <option value="fade-left">fade-left</option>
+                <option value="fade-right">fade-right</option>
+                <option value="fade-up-right">fade-up-right</option>
+                <option value="fade-up-left">fade-up-left</option>
+                <option value="fade-down-right">fade-down-right</option>
+                <option value="fade-down-left">fade-down-left</option>
+              </optgroup>
+              <optgroup label="Flips">
+                <option value="flip-up">flip-up</option>
+                <option value="flip-down">flip-down</option>
+                <option value="flip-left">flip-left</option>
+                <option value="flip-right">flip-right</option>
+              </optgroup>
+              <optgroup label="Zooms">
+                <option value="zoom-in">zoom-in</option>
+                <option value="zoom-in-up">zoom-in-up</option>
+                <option value="zoom-in-down">zoom-in-down</option>
+                <option value="zoom-in-left">zoom-in-left</option>
+                <option value="zoom-in-right">zoom-in-right</option>
+                <option value="zoom-out">zoom-out</option>
+                <option value="zoom-out-up">zoom-out-up</option>
+                <option value="zoom-out-down">zoom-out-down</option>
+                <option value="zoom-out-left">zoom-out-left</option>
+                <option value="zoom-out-right">zoom-out-right</option>
+              </optgroup>
+              <optgroup label="Slides">
+                <option value="slide-up">slide-up</option>
+                <option value="slide-down">slide-down</option>
+                <option value="slide-left">slide-left</option>
+                <option value="slide-right">slide-right</option>
+              </optgroup>
+              <optgroup label="Blurs">
+                <option value="blur-in">blur-in</option>
+                <option value="blur-in-up">blur-in-up</option>
+                <option value="blur-in-down">blur-in-down</option>
+                <option value="blur-in-left">blur-in-left</option>
+                <option value="blur-in-right">blur-in-right</option>
+              </optgroup>
+              <optgroup label="Skews">
+                <option value="skew-up">skew-up</option>
+                <option value="skew-down">skew-down</option>
+              </optgroup>
+              <optgroup label="Rotates">
+                <option value="rotate-in">rotate-in</option>
+                <option value="rotate-in-up-left">rotate-in-up-left</option>
+                <option value="rotate-in-up-right">rotate-in-up-right</option>
+                <option value="rotate-in-down-left">rotate-in-down-left</option>
+                <option value="rotate-in-down-right">rotate-in-down-right</option>
+              </optgroup>
+              <optgroup label="Backs">
+                <option value="back-in">back-in</option>
+                <option value="back-in-up">back-in-up</option>
+                <option value="back-in-down">back-in-down</option>
+                <option value="back-in-left">back-in-left</option>
+                <option value="back-in-right">back-in-right</option>
+              </optgroup>
+              <optgroup label="Specials">
+                <option value="roll-in">roll-in</option>
+                <option value="jack-in-the-box">jack-in-the-box</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <div class="control-row">
+            <div class="control-group">
+              <label for="durationSlider">
+                <span class="lang-zh">时长 (Duration)</span>
+                <span class="lang-en">Duration</span>
+                <span id="durationVal">800ms</span>
+              </label>
+              <input type="range" id="durationSlider" min="50" max="3000" step="50" value="800" oninput="updatePlayground()">
+            </div>
+            <div class="control-group">
+              <label for="delaySlider">
+                <span class="lang-zh">延迟 (Delay)</span>
+                <span class="lang-en">Delay</span>
+                <span id="delayVal">0ms</span>
+              </label>
+              <input type="range" id="delaySlider" min="0" max="3000" step="50" value="0" oninput="updatePlayground()">
+            </div>
+          </div>
+
+          <div class="control-row">
+            <div class="control-group">
+              <label for="offsetSlider">
+                <span class="lang-zh">偏移 (Offset)</span>
+                <span class="lang-en">Offset</span>
+                <span id="offsetVal">120px</span>
+              </label>
+              <input type="range" id="offsetSlider" min="0" max="500" step="10" value="120" oninput="updatePlayground()">
+            </div>
+            <div class="control-group">
+              <label for="easingSelect">
+                <span class="lang-zh">缓动 (Easing)</span>
+                <span class="lang-en">Easing</span>
+              </label>
+              <select id="easingSelect" onchange="updatePlayground()">
+                <option value="linear">linear</option>
+                <option value="ease" selected>ease</option>
+                <option value="ease-in">ease-in</option>
+                <option value="ease-out">ease-out</option>
+                <option value="ease-in-out">ease-in-out</option>
+                <option value="ease-in-back">ease-in-back</option>
+                <option value="ease-out-back">ease-out-back</option>
+                <option value="ease-in-out-back">ease-in-out-back</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="control-row" style="align-items: center; margin-top: 0.5rem;">
+            <label class="checkbox-label">
+              <input type="checkbox" id="onceCheckbox" checked onchange="updatePlayground()">
+              <span class="lang-zh">单次触发 (Once)</span>
+              <span class="lang-en">Trigger Once</span>
+            </label>
+            <button class="btn btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.85rem;" onclick="replayAnimation()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+              <span class="lang-zh">触发动画</span>
+              <span class="lang-en">Replay</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Preview Column -->
+        <div class="playground-preview">
+          <div id="previewContainer">
+            <div id="previewCard" class="preview-box" data-aos="fade-up" data-aos-duration="800" data-aos-offset="120" data-aos-once="true">
+              <h4>
+                <span class="lang-zh">预览卡片</span>
+                <span class="lang-en">Preview Card</span>
+              </h4>
+              <p>fade-up</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Code Exporter Section -->
+    <section class="code-generator">
+      <div class="code-card">
+        <div class="code-header">
+          <div class="code-tabs">
+            <button class="code-tab active" onclick="switchCodeTab('html')">Vanilla JS (HTML)</button>
+            <button class="code-tab" onclick="switchCodeTab('react')">React Hook</button>
+            <button class="code-tab" onclick="switchCodeTab('vue')">Vue 3 Directive</button>
+          </div>
+          <button class="copy-btn" onclick="copyCode()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span class="lang-zh">复制代码</span>
+            <span class="lang-en">Copy Code</span>
+          </button>
+        </div>
+        <div class="code-body">
+          <pre><code id="codeBlock"><span class="lang-zh">加载中...</span><span class="lang-en">Loading...</span></code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Presets Section -->
+    <section class="showcase-wall" id="presets">
+      <div class="section-title">
+        <h2>
+          <span class="lang-zh">预设效果展示墙</span>
+          <span class="lang-en">Presets Showcase Wall</span>
+        </h2>
+        <p class="lang-zh">AOS Modern 内置了数十种高级过渡动画。沿页面下滚，亲身体验不同类别的动效：</p>
+        <p class="lang-en">AOS Modern includes dozens of built-in transitions. Scroll down to experience different animation groups:</p>
+      </div>
+
+      <div class="tabs-container">
+        <button class="tab-btn active" onclick="filterPresets('all')">
+          <span class="lang-zh">全部类型</span>
+          <span class="lang-en">All</span>
+        </button>
+        <button class="tab-btn" onclick="filterPresets('fade')">
+          <span class="lang-zh">渐隐 (Fade)</span>
+          <span class="lang-en">Fade</span>
+        </button>
+        <button class="tab-btn" onclick="filterPresets('flip')">
+          <span class="lang-zh">翻转 (Flip)</span>
+          <span class="lang-en">Flip</span>
+        </button>
+        <button class="tab-btn" onclick="filterPresets('zoom')">
+          <span class="lang-zh">缩放 (Zoom)</span>
+          <span class="lang-en">Zoom</span>
+        </button>
+        <button class="tab-btn" onclick="filterPresets('slide')">
+          <span class="lang-zh">滑动 (Slide)</span>
+          <span class="lang-en">Slide</span>
+        </button>
+        <button class="tab-btn" onclick="filterPresets('blur')">
+          <span class="lang-zh">模糊 (Blur)</span>
+          <span class="lang-en">Blur</span>
+        </button>
+        <button class="tab-btn" onclick="filterPresets('skew')">
+          <span class="lang-zh">倾斜 (Skew)</span>
+          <span class="lang-en">Skew</span>
+        </button>
+        <button class="tab-btn" onclick="filterPresets('rotate')">
+          <span class="lang-zh">旋转 (Rotate)</span>
+          <span class="lang-en">Rotate</span>
+        </button>
+        <button class="tab-btn" onclick="filterPresets('back')">
+          <span class="lang-zh">回弹 (Back)</span>
+          <span class="lang-en">Back</span>
+        </button>
+        <button class="tab-btn" onclick="filterPresets('special')">
+          <span class="lang-zh">特技 (Special)</span>
+          <span class="lang-en">Special</span>
+        </button>
+      </div>
+
+      <div class="wall-grid" id="wallGrid">
+        <!-- Wall items will be dynamically rendered -->
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="demo-footer">
+      <div class="footer-content">
+        <a href="#" class="footer-logo">AOS Modern</a>
+        <div class="footer-links">
+          <a href="simple.html">
+            <span class="lang-zh">原生 Core</span>
+            <span class="lang-en">Core JS</span>
+          </a>
+          <a href="async.html">
+            <span class="lang-zh">DOM 侦测</span>
+            <span class="lang-en">DOM Detection</span>
+          </a>
+          <a href="react.html">
+            <span class="lang-zh">React Hooks</span>
+            <span class="lang-en">React Hook</span>
+          </a>
+          <a href="vue.html">
+            <span class="lang-zh">Vue 插件</span>
+            <span class="lang-en">Vue Plugin</span>
+          </a>
+        </div>
+        <div class="footer-copy">
+          <p>Released under the <a href="https://github.com/gabulaideu/aos/blob/master/LICENSE" style="color: #60a5fa;" target="_blank">MIT License</a>. Created for the modern responsive web.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- AOS Modern Core -->
+    <script src="https://unpkg.com/aos-modern@latest/dist/aos.js"></script>
+    <script>
+      // 预设效果墙数据
+      const presetsData = [
+        { name: 'fade-up', group: 'fade' },
+        { name: 'fade-down', group: 'fade' },
+        { name: 'fade-left', group: 'fade' },
+        { name: 'fade-right', group: 'fade' },
+        { name: 'fade-up-right', group: 'fade' },
+        { name: 'fade-up-left', group: 'fade' },
+        { name: 'fade-down-right', group: 'fade' },
+        { name: 'fade-down-left', group: 'fade' },
+        
+        { name: 'flip-up', group: 'flip' },
+        { name: 'flip-down', group: 'flip' },
+        { name: 'flip-left', group: 'flip' },
+        { name: 'flip-right', group: 'flip' },
+        
+        { name: 'zoom-in', group: 'zoom' },
+        { name: 'zoom-in-up', group: 'zoom' },
+        { name: 'zoom-in-down', group: 'zoom' },
+        { name: 'zoom-in-left', group: 'zoom' },
+        { name: 'zoom-in-right', group: 'zoom' },
+        { name: 'zoom-out', group: 'zoom' },
+        { name: 'zoom-out-up', group: 'zoom' },
+        { name: 'zoom-out-down', group: 'zoom' },
+        { name: 'zoom-out-left', group: 'zoom' },
+        { name: 'zoom-out-right', group: 'zoom' },
+        
+        { name: 'slide-up', group: 'slide' },
+        { name: 'slide-down', group: 'slide' },
+        { name: 'slide-left', group: 'slide' },
+        { name: 'slide-right', group: 'slide' },
+
+        { name: 'blur-in', group: 'blur' },
+        { name: 'blur-in-up', group: 'blur' },
+        { name: 'blur-in-down', group: 'blur' },
+        { name: 'blur-in-left', group: 'blur' },
+        { name: 'blur-in-right', group: 'blur' },
+
+        { name: 'skew-up', group: 'skew' },
+        { name: 'skew-down', group: 'skew' },
+
+        { name: 'rotate-in', group: 'rotate' },
+        { name: 'rotate-in-up-left', group: 'rotate' },
+        { name: 'rotate-in-up-right', group: 'rotate' },
+        { name: 'rotate-in-down-left', group: 'rotate' },
+        { name: 'rotate-in-down-right', group: 'rotate' },
+
+        { name: 'back-in', group: 'back' },
+        { name: 'back-in-up', group: 'back' },
+        { name: 'back-in-down', group: 'back' },
+        { name: 'back-in-left', group: 'back' },
+        { name: 'back-in-right', group: 'back' },
+
+        { name: 'roll-in', group: 'special' },
+        { name: 'jack-in-the-box', group: 'special' }
+      ];
+
+      // 渲染效果墙
+      function renderWall(filter = 'all') {
+        const wallGrid = document.getElementById('wallGrid');
+        wallGrid.innerHTML = '';
+        
+        const filtered = filter === 'all' ? presetsData : presetsData.filter(p => p.group === filter);
+        
+        const isEn = document.documentElement.getAttribute('lang') === 'en';
+        const clickText = isEn ? 'Click to configure' : '点击去游乐场配置';
+
+        filtered.forEach((preset, index) => {
+          const item = document.createElement('div');
+          item.className = 'wall-item';
+          item.setAttribute('data-aos', preset.name);
+          item.setAttribute('data-aos-duration', '800');
+          item.setAttribute('data-aos-offset', '50');
+          item.setAttribute('data-aos-once', 'false'); // 多次触发，方便体验滚动
+          
+          item.innerHTML = `
+            <span style="font-size: 1.1rem; color: #fff; font-weight: 600; margin-bottom: 0.25rem;">${preset.name}</span>
+            <span style="color: var(--text-secondary); font-size: 0.75rem;">${clickText}</span>
+          `;
+          
+          // 点击项可以在游乐场预览
+          item.onclick = () => {
+            document.getElementById('animSelect').value = preset.name;
+            updatePlayground();
+            document.getElementById('playground').scrollIntoView({ behavior: 'smooth' });
+          };
+          
+          wallGrid.appendChild(item);
+        });
+        
+        // 软刷新 AOS 让它感知到新加入 of DOM 节点
+        if (typeof AOS !== 'undefined') {
+          AOS.refreshHard();
+        }
+      }
+
+      function filterPresets(group) {
+        // 更新 Tab 按钮激活状态
+        const tabs = document.querySelectorAll('.tab-btn');
+        tabs.forEach(t => t.classList.remove('active'));
+        event.currentTarget.classList.add('active');
+        
+        renderWall(group);
+      }
+
+      // 游乐场控制
+      let currentTab = 'html';
+
+      function toggleLanguage() {
+        const currentLang = document.documentElement.getAttribute('lang') || 'zh-CN';
+        const newLang = currentLang === 'zh-CN' ? 'en' : 'zh-CN';
+        setLanguage(newLang);
+      }
+
+      function setLanguage(lang) {
+        document.documentElement.setAttribute('lang', lang);
+        localStorage.setItem('aos-lang', lang);
+        
+        // Force refresh components
+        updatePlayground();
+        
+        // Find active tab and refresh wall
+        const activeTabBtn = document.querySelector('.tab-btn.active');
+        if (activeTabBtn) {
+          const groupMatch = activeTabBtn.getAttribute('onclick').match(/'([^']+)'/);
+          if (groupMatch) renderWall(groupMatch[1]);
+        } else {
+          renderWall('all');
+        }
+      }
+
+      function updatePlayground() {
+        const animName = document.getElementById('animSelect').value;
+        const offset = document.getElementById('offsetSlider').value;
+        const duration = document.getElementById('durationSlider').value;
+        const delay = document.getElementById('delaySlider').value;
+        const easing = document.getElementById('easingSelect').value;
+        const once = document.getElementById('onceCheckbox').checked;
+
+        // 更新控制面板数值标签
+        document.getElementById('offsetVal').textContent = offset + 'px';
+        document.getElementById('durationVal').textContent = duration + 'ms';
+        document.getElementById('delayVal').textContent = delay + 'ms';
+
+        // 重新生成 DOM 节点以彻底让浏览器和 AOS 重置动效状态
+        // data-aos-offset 被设为 0 以确保当前可见即可播放，无需滚动触发
+        // data-aos-once 被设为 true 以在触发后解除 scroll 观察，避免干扰
+        const container = document.getElementById('previewContainer');
+        const isEn = document.documentElement.getAttribute('lang') === 'en';
+        const cardTitle = isEn ? 'Preview Card' : '预览卡片';
+
+        container.innerHTML = `
+          <div id="previewCard" class="preview-box"
+               data-aos="${animName}"
+               data-aos-offset="0"
+               data-aos-duration="${duration}"
+               data-aos-delay="${delay}"
+               data-aos-easing="${easing}"
+               data-aos-once="true">
+            <h4>${cardTitle}</h4>
+            <p>${animName}</p>
+          </div>
+        `;
+
+        // 重新刷新 AOS 规则，会抓取这个新插入的 previewCard 并触发绑定它
+        if (typeof AOS !== 'undefined') {
+          AOS.refreshHard();
+        }
+
+        // 更新代码生成器
+        generateCode();
+      }
+
+      function replayAnimation() {
+        updatePlayground();
+      }
+
+      function generateCode() {
+        const animName = document.getElementById('animSelect').value;
+        const offset = document.getElementById('offsetSlider').value;
+        const duration = document.getElementById('durationSlider').value;
+        const delay = document.getElementById('delaySlider').value;
+        const easing = document.getElementById('easingSelect').value;
+        const once = document.getElementById('onceCheckbox').checked;
+
+        const isEn = document.documentElement.getAttribute('lang') === 'en';
+
+        let code = '';
+
+        if (currentTab === 'html') {
+          if (isEn) {
+            code = `<!-- 1. Include AOS CSS styling -->
+<link rel="stylesheet" href="https://unpkg.com/aos-modern@latest/dist/aos.css" />
+
+<!-- 2. Configure the data-aos attributes on target elements -->
+<div data-aos="${animName}"
+     data-aos-offset="${offset}"
+     data-aos-duration="${duration}"
+     data-aos-delay="${delay}"
+     data-aos-easing="${easing}"
+     data-aos-once="${once}">
+  Animated Content
+</div>
+
+<!-- 3. Include JS library at the bottom and initialize -->
+<script src="https://unpkg.com/aos-modern@latest/dist/aos.js"><\/script>
+<script>
+  AOS.init();
+<\/script>`;
+          } else {
+            code = `<!-- 1. 引入 AOS CSS 样式表 -->
+<link rel="stylesheet" href="https://unpkg.com/aos-modern@latest/dist/aos.css" />
+
+<!-- 2. 为目标 HTML 元素配置 data-aos 属性 -->
+<div data-aos="${animName}"
+     data-aos-offset="${offset}"
+     data-aos-duration="${duration}"
+     data-aos-delay="${delay}"
+     data-aos-easing="${easing}"
+     data-aos-once="${once}">
+  动画内容
+</div>
+
+<!-- 3. 在页面底部引入 JS 库并初始化 -->
+<script src="https://unpkg.com/aos-modern@latest/dist/aos.js"><\/script>
+<script>
+  AOS.init();
+<\/script>`;
+          }
+        } else if (currentTab === 'react') {
+          if (isEn) {
+            code = `import React from 'react';
+import { useAOS } from 'aos-modern/react';
+import 'aos-modern/dist/aos.css';
+
+export default function App() {
+  // Automatically handles component initialization and cleanups
+  useAOS({
+    once: ${once},
+    offset: ${offset},
+    easing: '${easing}',
+    duration: ${duration}
+  });
+
+  return (
+    <div data-aos="${animName}" data-aos-delay="${delay}">
+      Animate on scroll with React Hook!
+    </div>
+  );
+}`;
+          } else {
+            code = `import React from 'react';
+import { useAOS } from 'aos-modern/react';
+import 'aos-modern/dist/aos.css';
+
+export default function App() {
+  // 使用 React Hook 自动托管组件生命周期的初始化与销毁
+  useAOS({
+    once: ${once},
+    offset: ${offset},
+    easing: '${easing}',
+    duration: ${duration}
+  });
+
+  return (
+    <div data-aos="${animName}" data-aos-delay="${delay}">
+      Animate on scroll with React Hook!
+    </div>
+  );
+}`;
+          }
+        } else if (currentTab === 'vue') {
+          if (isEn) {
+            code = `<!-- Vue Template Code -->
+<template>
+  <!-- Use v-aos directive inside Vue templates. Supports options binding -->
+  <div v-aos="{
+    animation: '${animName}',
+    delay: ${delay},
+    duration: ${duration},
+    once: ${once}
+  }">
+    Animate on scroll with Vue Directive!
+  </div>
+</template>
+
+<script setup>
+// Import and register AOS plugin, load CSS in entry file (main.js):
+// import { AOSPlugin } from 'aos-modern/vue';
+// import 'aos-modern/dist/aos.css';
+// app.use(AOSPlugin, { offset: ${offset}, easing: '${easing}' });
+<\/script>`;
+          } else {
+            code = `<!-- Vue 模板代码 -->
+<template>
+  <!-- 在 Vue 组件中直接使用 v-aos 指令。支持直接配置属性参数对象 -->
+  <div v-aos="{
+    animation: '${animName}',
+    delay: ${delay},
+    duration: ${duration},
+    once: ${once}
+  }">
+    Animate on scroll with Vue Directive!
+  </div>
+</template>
+
+<script setup>
+// 在 Vue 入口 main.js 导入注册 AOS 插件并加载 CSS 样式:
+// import { AOSPlugin } from 'aos-modern/vue';
+// import 'aos-modern/dist/aos.css';
+// app.use(AOSPlugin, { offset: ${offset}, easing: '${easing}' });
+<\/script>`;
+          }
+        }
+
+        document.getElementById('codeBlock').textContent = code;
+      }
+
+      function switchCodeTab(tab) {
+        currentTab = tab;
+        const tabs = document.querySelectorAll('.code-tab');
+        tabs.forEach(t => t.classList.remove('active'));
+        
+        // 绑定高亮标签
+        if (tab === 'html') tabs[0].classList.add('active');
+        if (tab === 'react') tabs[1].classList.add('active');
+        if (tab === 'vue') tabs[2].classList.add('active');
+        
+        generateCode();
+      }
+
+      function copyCode() {
+        const text = document.getElementById('codeBlock').textContent;
+        navigator.clipboard.writeText(text).then(() => {
+          const copyBtn = document.querySelector('.copy-btn');
+          const oldHTML = copyBtn.innerHTML;
+          const isEn = document.documentElement.getAttribute('lang') === 'en';
+          copyBtn.innerHTML = `
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            ${isEn ? 'Copied!' : '已复制!'}
+          `;
+          setTimeout(() => {
+            copyBtn.innerHTML = oldHTML;
+          }, 1500);
+        }).catch(err => {
+          const isEn = document.documentElement.getAttribute('lang') === 'en';
+          alert(isEn ? 'Failed to copy, please select and copy manually.' : '复制失败，请手动选择复制。');
+        });
+      }
+
+      // 页面载入初始化
+      window.addEventListener('DOMContentLoaded', () => {
+        // 初始化 AOS
+        AOS.init({
+          offset: 120,
+          delay: 0,
+          duration: 800,
+          easing: 'ease-out-back',
+          once: false // 首页让动效可多次滚动触发体验
+        });
+
+        // 渲染效果墙
+        renderWall('all');
+        
+        // 生成初始代码
+        generateCode();
+      });
+    </script>
+  </body>
+</html>

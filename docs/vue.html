@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <script>
+      (function() {
+        const savedLang = localStorage.getItem('aos-lang');
+        const userLang = savedLang || (navigator.language.startsWith('zh') ? 'zh-CN' : 'en');
+        document.documentElement.setAttribute('lang', userLang);
+      })();
+    </script>
+    <title>AOS Modern - Vue Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos-modern@latest/dist/aos.css" />
+  </head>
+  <body>
+    <!-- Background Glowing Blobs -->
+    <div class="bg-blobs">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="demo-header">
+      <div class="header-content">
+        <a href="index.html" class="logo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 3L3 12h4l5-5 5 5h4L12 3z" fill="url(#logo-grad-top)" />
+            <path d="M12 21l9-9h-4l-5 5-5-5H3l9 9z" fill="url(#logo-grad-bottom)" opacity="0.9" />
+            <circle cx="12" cy="12" r="2.5" fill="url(#logo-grad-core)" />
+            <defs>
+              <linearGradient id="logo-grad-top" x1="3" y1="3" x2="21" y2="12" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#00f2fe" />
+                <stop offset="1" stop-color="#4facfe" />
+              </linearGradient>
+              <linearGradient id="logo-grad-bottom" x1="3" y1="12" x2="21" y2="21" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#f355da" />
+                <stop offset="1" stop-color="#7000ff" />
+              </linearGradient>
+              <radialGradient id="logo-grad-core" cx="12" cy="12" r="2.5" fx="12" fy="12" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#ffffff" />
+                <stop offset="1" stop-color="#00f2fe" />
+              </radialGradient>
+            </defs>
+          </svg>
+          AOS Modern
+        </a>
+        <nav class="framework-nav">
+          <a href="simple.html">Core (Simple)</a>
+          <a href="async.html">Core (Async)</a>
+          <a href="react.html">React Hook</a>
+          <a href="vue.html" class="active">Vue Plugin</a>
+          <button class="btn lang-btn" onclick="toggleLanguage()">
+            <span class="lang-zh">EN</span>
+            <span class="lang-en">中文</span>
+          </button>
+          <a href="https://github.com/gabulaideu/aos" class="btn github-btn" target="_blank">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12C2 16.82 5.12 20.9 9.47 22.35C9.97 22.44 10.15 22.13 10.15 21.87C10.15 21.64 10.14 21.03 10.14 20.21C7.07 20.88 6.42 18.73 6.42 18.73C5.92 17.46 5.2 17.12 5.2 17.12C4.19 16.43 5.28 16.44 5.28 16.44C6.39 16.52 6.98 17.58 6.98 17.58C7.97 19.28 9.58 18.79 10.21 18.51C10.31 17.79 10.6 17.3 10.92 17.02C8.47 16.74 5.89 15.79 5.89 11.57C5.89 10.37 6.32 9.39 7.03 8.62C6.92 8.34 6.54 7.22 7.14 5.71C7.14 5.71 8.06 5.42 10.16 6.84C11.04 6.6 11.98 6.48 12.92 6.48C13.86 6.48 14.8 6.6 15.68 6.84C17.77 5.42 18.69 5.71 18.69 5.71C19.29 7.22 18.91 8.34 18.8 8.62C19.51 9.39 19.94 10.37 19.94 11.57C19.94 15.8 17.36 16.74 14.9 17.01C15.3 17.35 15.65 18.03 15.65 19.07C15.65 20.56 15.64 21.76 15.64 22.12C15.64 22.39 15.82 22.7 16.33 22.6C20.68 21.15 23.8 17.07 23.8 12.35C23.8 7.63 20.68 3.55 16.33 2.1C16.33 2.1 12 2 12 2Z"/>
+            </svg>
+            GitHub
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Loading Overlay -->
+    <div class="demo-loader" id="vue-loader">
+      <div class="spinner"></div>
+      <span class="lang-zh">正在加载 Vue 运行时…</span>
+      <span class="lang-en">Loading Vue runtime…</span>
+    </div>
+
+    <div id="app" style="opacity:0;">
+      <div class="demo-info">
+        <h2>
+          <svg width="32" height="32" viewBox="0 0 261.76 226.69" xmlns="http://www.w3.org/2000/svg">
+            <path d="M161.096.001l-30.225 52.351L100.647.001H0l130.871 226.689L261.742.001z" fill="#41B883"/>
+            <path d="M161.096.001l-30.225 52.351L100.647.001H52.346l78.525 136.01L209.397.001z" fill="#34495E"/>
+          </svg>
+          Vue Demo <span class="framework-badge vue-badge">Vue 3</span>
+        </h2>
+        <p class="lang-zh">
+          在 Vue 应用程序中，可以使用 <code>AOSPlugin</code> 插件。
+          它注册了自定义指令 <code>v-aos</code>，你可以直接传递动画名称（字符串）或者配置对象（支持绑定 duration、delay、once 等）。
+        </p>
+        <p class="lang-en">
+          Use the <code>AOSPlugin</code> in Vue applications.
+          It registers the <code>v-aos</code> custom directive. You can pass an animation name string or a configuration object (with duration, delay, once, etc.).
+        </p>
+
+        <div class="btn-container">
+          <button class="btn" @click="toggleCard">
+            <span class="lang-zh">{{ showExtra ? '减少卡片' : '追加卡片' }}</span>
+            <span class="lang-en">{{ showExtra ? 'Remove Cards' : 'Append Cards' }}</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="aos-all">
+        <!-- 字符串传参方式 -->
+        <div class="aos-item" v-aos="'fade-up'">
+          <div class="aos-item__inner">
+            <h3>1</h3>
+            <span>v-aos="'fade-up'"</span>
+          </div>
+        </div>
+
+        <div class="aos-item" v-aos="'fade-down'">
+          <div class="aos-item__inner">
+            <h3>2</h3>
+            <span>v-aos="'fade-down'"</span>
+          </div>
+        </div>
+
+        <!-- 配置对象传参方式 -->
+        <div class="aos-item" v-aos="{ animation: 'zoom-in', delay: 200, duration: 1000 }">
+          <div class="aos-item__inner">
+            <h3>3</h3>
+            <span>v-aos="{animation: 'zoom-in', delay: 200}"</span>
+          </div>
+        </div>
+
+        <div class="aos-item" v-aos="'flip-left'">
+          <div class="aos-item__inner">
+            <h3>4</h3>
+            <span>v-aos="'flip-left'"</span>
+          </div>
+        </div>
+
+        <div class="aos-item" v-aos="{ animation: 'flip-up', once: true }">
+          <div class="aos-item__inner">
+            <h3>5</h3>
+            <span>v-aos="{animation: 'flip-up', once: true}"</span>
+          </div>
+        </div>
+
+        <div class="aos-item" v-aos="'zoom-out-up'">
+          <div class="aos-item__inner">
+            <h3>6</h3>
+            <span>v-aos="'zoom-out-up'"</span>
+          </div>
+        </div>
+
+        <!-- 动态卡片演示 -->
+        <template v-if="showExtra">
+          <div class="aos-item" v-aos="'fade-right'">
+            <div class="aos-item__inner">
+              <h3>7</h3>
+              <span>
+                <span class="lang-zh">[动态] v-aos="'fade-right'"</span>
+                <span class="lang-en">[Dynamic] v-aos="'fade-right'"</span>
+              </span>
+            </div>
+          </div>
+          <div class="aos-item" v-aos="'fade-left'">
+            <div class="aos-item__inner">
+              <h3>8</h3>
+              <span>
+                <span class="lang-zh">[动态] v-aos="'fade-left'"</span>
+                <span class="lang-en">[Dynamic] v-aos="'fade-left'"</span>
+              </span>
+            </div>
+          </div>
+          <div class="aos-item" v-aos="{ animation: 'zoom-out-down', duration: 1500 }">
+            <div class="aos-item__inner">
+              <h3>9</h3>
+              <span>
+                <span class="lang-zh">[动态] v-aos="{ animation: 'zoom-out-down' }"</span>
+                <span class="lang-en">[Dynamic] v-aos="{ animation: 'zoom-out-down' }"</span>
+              </span>
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="demo-footer">
+      <div class="footer-content">
+        <a href="index.html" class="footer-logo">AOS Modern</a>
+        <div class="footer-links">
+          <a href="simple.html">
+            <span class="lang-zh">原生 Core</span>
+            <span class="lang-en">Core JS</span>
+          </a>
+          <a href="async.html">
+            <span class="lang-zh">DOM 侦测</span>
+            <span class="lang-en">DOM Detection</span>
+          </a>
+          <a href="react.html">
+            <span class="lang-zh">React Hooks</span>
+            <span class="lang-en">React Hook</span>
+          </a>
+          <a href="vue.html">
+            <span class="lang-zh">Vue 插件</span>
+            <span class="lang-en">Vue Plugin</span>
+          </a>
+        </div>
+        <div class="footer-copy">
+          <p>Released under the <a href="https://github.com/gabulaideu/aos/blob/master/LICENSE" style="color: #60a5fa;" target="_blank">MIT License</a>. Created for the modern responsive web.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- 加载库依赖 -->
+    <script src="https://unpkg.com/aos-modern@latest/dist/aos.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      // 桥接 UMD 期待的全局变量
+      window['./aos.js'] = window.AOS;
+
+      function toggleLanguage() {
+        const currentLang = document.documentElement.getAttribute('lang') || 'zh-CN';
+        const newLang = currentLang === 'zh-CN' ? 'en' : 'zh-CN';
+        setLanguage(newLang);
+      }
+
+      function setLanguage(lang) {
+        document.documentElement.setAttribute('lang', lang);
+        localStorage.setItem('aos-lang', lang);
+      }
+    </script>
+    <!-- 加载编译出来的 Vue Plugin -->
+    <script src="https://unpkg.com/aos-modern@latest/dist/vue.js"></script>
+
+    <script>
+      const { createApp, ref } = Vue;
+      const AOSPlugin = window.vue; // 从 UMD 获取导出的默认插件
+
+      const app = createApp({
+        setup() {
+          const showExtra = ref(true);
+          const toggleCard = () => {
+            showExtra.value = !showExtra.value;
+          };
+          return {
+            showExtra,
+            toggleCard
+          };
+        }
+      });
+
+      // 注册插件，传入全局初始化选项
+      app.use(AOSPlugin, {
+        duration: 800,
+        easing: 'ease-out-back'
+      });
+
+      // 先完成 Vue mount（处理 v-aos、v-if 等指令），再做过渡动画
+      app.mount('#app');
+
+      // mount 完毕后：先淡出 loader，350ms 后再淡入 #app 内容
+      const loader = document.getElementById('vue-loader');
+      const appEl = document.getElementById('app');
+      if (loader) {
+        loader.style.transition = 'opacity 0.35s ease';
+        loader.style.opacity = '0';
+        setTimeout(() => {
+          loader.remove();
+          if (appEl) {
+            appEl.style.transition = 'opacity 0.35s ease';
+            appEl.style.opacity = '1';
+          }
+          // 容器显示后重新触发 AOS，让隐藏期间错过的卡片重新扫描
+          if (typeof AOS !== 'undefined') AOS.refreshHard();
+        }, 350);
+      } else {
+        if (appEl) appEl.style.opacity = '1';
+        if (typeof AOS !== 'undefined') AOS.refreshHard();
+      }
+    </script>
+  </body>
+</html>

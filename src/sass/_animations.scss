@@ -175,3 +175,160 @@ $aos-distance: 100px !default;
   transform: perspective(2500px) rotateX(100deg);
   &.aos-animate {transform: perspective(2500px) rotateX(0);}
 }
+
+/**
+ * Blur animations
+ */
+
+[data-aos^='blur'][data-aos^='blur'] {
+  opacity: 0;
+  filter: blur(12px);
+  transition-property: opacity, filter, transform;
+
+  &.aos-animate {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+[data-aos='blur-in'] {
+  transform: scale(0.95);
+}
+
+[data-aos='blur-in-up'] {
+  transform: translate3d(0, $aos-distance, 0);
+}
+
+[data-aos='blur-in-down'] {
+  transform: translate3d(0, -$aos-distance, 0);
+}
+
+[data-aos='blur-in-left'] {
+  transform: translate3d($aos-distance, 0, 0);
+}
+
+[data-aos='blur-in-right'] {
+  transform: translate3d(-$aos-distance, 0, 0);
+}
+
+
+/**
+ * Skew animations
+ */
+
+[data-aos^='skew'][data-aos^='skew'] {
+  opacity: 0;
+  transition-property: opacity, transform;
+
+  &.aos-animate {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) skew(0deg, 0deg);
+  }
+}
+
+[data-aos='skew-up'] {
+  transform: translate3d(0, $aos-distance, 0) skewY(5deg);
+}
+
+[data-aos='skew-down'] {
+  transform: translate3d(0, -$aos-distance, 0) skewY(-5deg);
+}
+
+
+/**
+ * Rotate animations
+ */
+
+[data-aos^='rotate-in'][data-aos^='rotate-in'] {
+  opacity: 0;
+  transition-property: opacity, transform;
+
+  &.aos-animate {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+}
+
+[data-aos='rotate-in'] {
+  transform: rotate(-200deg);
+}
+
+[data-aos='rotate-in-up-left'] {
+  transform: translate3d(-$aos-distance, $aos-distance, 0) rotate(-45deg);
+}
+
+[data-aos='rotate-in-up-right'] {
+  transform: translate3d($aos-distance, $aos-distance, 0) rotate(45deg);
+}
+
+[data-aos='rotate-in-down-left'] {
+  transform: translate3d(-$aos-distance, -$aos-distance, 0) rotate(45deg);
+}
+
+[data-aos='rotate-in-down-right'] {
+  transform: translate3d($aos-distance, -$aos-distance, 0) rotate(-45deg);
+}
+
+
+/**
+ * Back animations
+ */
+
+[data-aos^='back-in'][data-aos^='back-in'] {
+  opacity: 0;
+  transition-property: opacity, transform;
+
+  &.aos-animate {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+[data-aos='back-in'] {
+  transform: scale(0.7);
+}
+
+[data-aos='back-in-up'] {
+  transform: translate3d(0, $aos-distance * 2, 0) scale(0.7);
+}
+
+[data-aos='back-in-down'] {
+  transform: translate3d(0, -$aos-distance * 2, 0) scale(0.7);
+}
+
+[data-aos='back-in-left'] {
+  transform: translate3d(-$aos-distance * 2, 0, 0) scale(0.7);
+}
+
+[data-aos='back-in-right'] {
+  transform: translate3d($aos-distance * 2, 0, 0) scale(0.7);
+}
+
+
+/**
+ * Specials
+ */
+
+[data-aos='roll-in'] {
+  opacity: 0;
+  transform: translate3d(-100%, 0, 0) rotate(-120deg);
+  transition-property: opacity, transform;
+
+  &.aos-animate {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+}
+
+[data-aos='jack-in-the-box'] {
+  opacity: 0;
+  transform: scale(0.1) rotate(-30deg);
+  transform-origin: center bottom;
+  transition-property: opacity, transform;
+
+  &.aos-animate {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 24 24" fill="none">
+  <!-- Top Chevron (AOS 'A') -->
+  <path d="M12 3L3 12h4l5-5 5 5h4L12 3z" fill="url(#logo-grad-top)" />
+  <!-- Bottom Chevron (Scroll 'V') -->
+  <path d="M12 21l9-9h-4l-5 5-5-5H3l9 9z" fill="url(#logo-grad-bottom)" opacity="0.9" />
+  <!-- Glowing Center Core -->
+  <circle cx="12" cy="12" r="2.5" fill="url(#logo-grad-core)" />
+  <defs>
+    <linearGradient id="logo-grad-top" x1="3" y1="3" x2="21" y2="12" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00f2fe" />
+      <stop offset="1" stop-color="#4facfe" />
+    </linearGradient>
+    <linearGradient id="logo-grad-bottom" x1="3" y1="12" x2="21" y2="21" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f355da" />
+      <stop offset="1" stop-color="#7000ff" />
+    </linearGradient>
+    <radialGradient id="logo-grad-core" cx="12" cy="12" r="2.5" fx="12" fy="12" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffffff" />
+      <stop offset="1" stop-color="#00f2fe" />
+    </radialGradient>
+  </defs>
+</svg>

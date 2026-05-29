@@ -1,20 +1,25 @@
 // Karma configuration
-// Generated on Mon Oct 19 2015 01:12:15 GMT+0200 (CEST)
 var isTravis = process.env.TRAVIS || false;
-var browsers = isTravis ? ['Chrome_travis_ci'] : ['Chrome'];
-var singleRun = isTravis;
+var browsers = isTravis ? ['ChromeHeadlessNoSandbox'] : ['ChromeHeadless'];
+var singleRun = true; // Run once and exit
 
 module.exports = function(config) {
   config.set({
     basePath: '',
     browsers: browsers,
-    frameworks: ['jasmine-jquery', 'jasmine'],
+    frameworks: ['jasmine'],
 
     files: [
-      'node_modules/babel-polyfill/dist/polyfill.js',
+      'test/setup.js',
       'test/index.js',
       {
         pattern: 'test/fixtures/**/*.html',
+        watched: true,
+        included: false,
+        served: true
+      },
+      {
+        pattern: 'dist/**/*.css',
         watched: true,
         included: false,
         served: true
@@ -26,31 +31,47 @@ module.exports = function(config) {
     },
 
     webpack: {
+      mode: 'development',
       devtool: 'inline-source-map',
+      externals: {
+        react: 'window.React',
+        vue: 'window.Vue'
+      },
       module: {
-        loaders: [{
-          test: /\.js?$/,
-          exclude: [/bower_components/, /node_modules/],
-          loader: 'babel'
-        }, {
-          test: /\.scss$/,
-          loader: "css-loader?sourceMap!sass-loader"
-        }]
+        rules: [
+          {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            use: {
+              loader: 'babel-loader',
+              options: {
+                presets: ['@babel/preset-env']
+              }
+            }
+          },
+          {
+            test: /\.scss$/,
+            use: [
+              'style-loader',
+              'css-loader',
+              'sass-loader'
+            ]
+          }
+        ]
       }
     },
 
     plugins: [
       'karma-chrome-launcher',
-      'karma-jasmine-jquery',
       'karma-jasmine',
       'karma-webpack'
     ],
 
-    reporters: ['dots'],
+    reporters: ['progress'],
 
     customLaunchers: {
-      Chrome_travis_ci: {
-        base: 'Chrome',
+      ChromeHeadlessNoSandbox: {
+        base: 'ChromeHeadless',
         flags: ['--no-sandbox']
       }
     },
@@ -58,6 +79,6 @@ module.exports = function(config) {
     port: 9876,
     singleRun: singleRun,
     colors: true,
-    logLevel: config.LOG_WARN
+    logLevel: config.LOG_INFO
   })
 }
