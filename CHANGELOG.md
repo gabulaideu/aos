@@ -1,5 +1,11 @@
 # Change Log
 
+## [3.0.1]
+
+### Changed
+- **Docs**: Removed obsolete Codepen example links that pointed to legacy repository demos.
+- **Docs**: Added CDN (unpkg) setup instructions alongside local `node_modules` options in both `README.md` and `README.zh-CN.md`.
+
 ## [3.0.0]
 
 ### Added
