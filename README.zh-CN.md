@@ -46,15 +46,25 @@ AOS 支持在向下和向上滚动时，为元素应用动画。
 
 ### 引入样式表
 
-```html
-<link rel="stylesheet" href="node_modules/aos-modern/dist/aos.css" />
-```
+- **CDN**:
+  ```html
+  <link rel="stylesheet" href="https://unpkg.com/aos-modern@latest/dist/aos.css" />
+  ```
+- **本地引入 (node_modules)**:
+  ```html
+  <link rel="stylesheet" href="node_modules/aos-modern/dist/aos.css" />
+  ```
 
 ### 引入脚本
 
-```html
-<script src="node_modules/aos-modern/dist/aos.js"></script>
-```
+- **CDN**:
+  ```html
+  <script src="https://unpkg.com/aos-modern@latest/dist/aos.js"></script>
+  ```
+- **本地引入 (node_modules)**:
+  ```html
+  <script src="node_modules/aos-modern/dist/aos.js"></script>
+  ```
 
 AOS 兼容 UMD 模块规范，因此您可以通过 AMD、CommonJS 模块导入，或以全局变量、Node 模块以及 ES6 模块的形式进行使用。
 

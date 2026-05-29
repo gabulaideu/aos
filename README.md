@@ -44,15 +44,25 @@ From version `2.0.0` attributes `aos` are no longer supported, always use `data-
 
 ### Link styles
 
-```html
-<link rel="stylesheet" href="node_modules/aos-modern/dist/aos.css" />
-```
+- **CDN**:
+  ```html
+  <link rel="stylesheet" href="https://unpkg.com/aos-modern@latest/dist/aos.css" />
+  ```
+- **Local**:
+  ```html
+  <link rel="stylesheet" href="node_modules/aos-modern/dist/aos.css" />
+  ```
 
 ### Add scripts
 
-```html
-<script src="node_modules/aos-modern/dist/aos.js"></script>
-```
+- **CDN**:
+  ```html
+  <script src="https://unpkg.com/aos-modern@latest/dist/aos.js"></script>
+  ```
+- **Local**:
+  ```html
+  <script src="node_modules/aos-modern/dist/aos.js"></script>
+  ```
 
 AOS from version `1.2.0` is available as UMD module, so you can use it as AMD, Global, Node or ES6 module.
 
