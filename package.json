@@ -11,6 +11,16 @@
     "./react": "./dist/react.js",
     "./vue": "./dist/vue.js"
   },
+  "keywords": [
+    "aos",
+    "aos-modern",
+    "animate-on-scroll",
+    "scroll-animation",
+    "css3-animations",
+    "intersection-observer",
+    "react",
+    "vue"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/gabulaideu/aos.git"
