@@ -4,7 +4,7 @@
 
 ---
 
-[![AOS - Animate on scroll library](https://s32.postimg.org/ktvt59hol/aos_header.png)](https://gabulaideu.github.io/aos/)
+[![AOS - Animate on scroll library](https://gabulaideu.github.io/aos/logo.svg)](https://gabulaideu.github.io/aos/)
 
 [![NPM version](https://img.shields.io/npm/v/aos-modern.svg?style=flat)](https://www.npmjs.com/package/aos-modern)
 [![NPM downloads](https://img.shields.io/npm/dm/aos-modern.svg?style=flat)](https://www.npmjs.com/package/aos-modern)
@@ -21,13 +21,6 @@ If you scroll back to top, elements will animate to it's previous state and are 
 ---
 
 ### 🚀 [Demo](https://gabulaideu.github.io/aos/)
-
-### 🌟 Codepen Examples
-
-- [Different build in animations](http://codepen.io/michalsnik/pen/WxNdvq)
-- [With anchor setting in use](http://codepen.io/michalsnik/pen/jrOYVO)
-- [With anchor-placement and different easing](http://codepen.io/michalsnik/pen/EyxoNm)
-- [With simple custom animations](http://codepen.io/michalsnik/pen/WxvNvE)
 
 ---
 
