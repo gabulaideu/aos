@@ -4,6 +4,10 @@
 
 ---
 
+> [!NOTE]
+> 本项目及文档由 AI Gemini 辅助重构与重写。
+
+
 # AOS - 页面滚动动画库 (Animate on Scroll)
 
 [![AOS - Animate on scroll library](https://gabulaideu.github.io/aos/logo.svg)](https://gabulaideu.github.io/aos/)

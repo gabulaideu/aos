@@ -73,7 +73,7 @@
       <span class="lang-en">Loading React runtime…</span>
     </div>
 
-    <div id="root" style="opacity:0;"></div>
+    <div id="root"></div>
 
     <!-- Footer -->
     <footer class="demo-footer">
@@ -98,7 +98,7 @@
           </a>
         </div>
         <div class="footer-copy">
-          <p>Released under the <a href="https://github.com/gabulaideu/aos/blob/master/LICENSE" style="color: #60a5fa;" target="_blank">MIT License</a>. Created for the modern responsive web.</p>
+          <p>Released under the <a href="https://github.com/gabulaideu/aos/blob/next/LICENSE" class="license-link" target="_blank">MIT License</a>. Created for the modern responsive web. <span class="footer-gemini-note"><span class="lang-zh">由 Gemini AI 重写</span><span class="lang-en">Rewritten by Gemini AI</span></span></p>
         </div>
       </div>
     </footer>
@@ -132,6 +132,32 @@
       const { useState, useMemo } = React;
       // 这里的 window.react 已经被 UMD 模块包装修改为了 useAOS 钩子
       const useAOS = window.react;
+
+      const items = [
+        { id: 1, aos: 'fade-up', desc: 'data-aos="fade-up"' },
+        { id: 2, aos: 'fade-down', delay: 200, desc: 'data-aos="fade-down" delay="200"' },
+        { id: 3, aos: 'zoom-in', duration: 1000, desc: 'data-aos="zoom-in" duration="1000"' },
+        { id: 4, aos: 'flip-left', desc: 'data-aos="flip-left"' },
+        { id: 5, aos: 'flip-right', desc: 'data-aos="flip-right"' },
+        { id: 6, aos: 'zoom-out-up', desc: 'data-aos="zoom-out-up"' },
+        { id: 7, aos: 'fade-up-right', desc: 'data-aos="fade-up-right"' },
+        { id: 8, aos: 'fade-up-left', desc: 'data-aos="fade-up-left"' },
+        { id: 9, aos: 'fade-down-right', desc: 'data-aos="fade-down-right"' },
+        { id: 10, aos: 'fade-down-left', desc: 'data-aos="fade-down-left"' },
+        { id: 11, aos: 'zoom-in-up', desc: 'data-aos="zoom-in-up"' },
+        { id: 12, aos: 'zoom-in-down', desc: 'data-aos="zoom-in-down"' },
+        { id: 13, aos: 'zoom-in-left', desc: 'data-aos="zoom-in-left"' },
+        { id: 14, aos: 'zoom-in-right', desc: 'data-aos="zoom-in-right"' },
+        { id: 15, aos: 'zoom-out', desc: 'data-aos="zoom-out"' },
+        { id: 16, aos: 'zoom-out-left', desc: 'data-aos="zoom-out-left"' },
+        { id: 17, aos: 'zoom-out-right', desc: 'data-aos="zoom-out-right"' },
+      ];
+
+      const extraItems = [
+        { id: 18, aos: 'fade-right', textZh: '[动态组件] fade-right', textEn: '[Dynamic] fade-right' },
+        { id: 19, aos: 'fade-left', textZh: '[动态组件] fade-left', textEn: '[Dynamic] fade-left' },
+        { id: 20, aos: 'zoom-out-down', textZh: '[动态组件] zoom-out-down', textEn: '[Dynamic] zoom-out-down' },
+      ];
 
       function App() {
         const [showExtra, setShowExtra] = useState(true);
@@ -198,74 +224,38 @@
             </div>
 
             <div className="aos-all">
-              <div className="aos-item" data-aos="fade-up">
-                <div className="aos-item__inner">
-                  <h3>1</h3>
-                  <span>data-aos="fade-up"</span>
+              {items.map(item => (
+                <div
+                  key={item.id}
+                  className="aos-item"
+                  data-aos={item.aos}
+                  data-aos-delay={item.delay}
+                  data-aos-duration={item.duration}
+                >
+                  <div className="aos-item__inner">
+                    <h3>{item.id}</h3>
+                    <span>{item.desc}</span>
+                  </div>
                 </div>
-              </div>
-              <div className="aos-item" data-aos="fade-down" data-aos-delay="200">
-                <div className="aos-item__inner">
-                  <h3>2</h3>
-                  <span>data-aos="fade-down" delay="200"</span>
-                </div>
-              </div>
-              <div className="aos-item" data-aos="zoom-in" data-aos-duration="1000">
-                <div className="aos-item__inner">
-                  <h3>3</h3>
-                  <span>data-aos="zoom-in" duration="1000"</span>
-                </div>
-              </div>
-              <div className="aos-item" data-aos="flip-left">
-                <div className="aos-item__inner">
-                  <h3>4</h3>
-                  <span>data-aos="flip-left"</span>
-                </div>
-              </div>
-              <div class="aos-item" data-aos="flip-right">
-                <div class="aos-item__inner">
-                  <h3>5</h3>
-                  <span>data-aos="flip-right"</span>
-                </div>
-              </div>
-              <div class="aos-item" data-aos="zoom-out-up">
-                <div class="aos-item__inner">
-                  <h3>6</h3>
-                  <span>data-aos="zoom-out-up"</span>
-                </div>
-              </div>
+              ))}
 
-              {showExtra && (
-                <>
-                  <div className="aos-item" data-aos="fade-right">
-                    <div className="aos-item__inner">
-                      <h3>7</h3>
-                      <span>
-                        <span className="lang-zh">[动态组件] fade-right</span>
-                        <span className="lang-en">[Dynamic] fade-right</span>
-                      </span>
-                    </div>
+              {showExtra && extraItems.map(item => (
+                <div
+                  key={item.id}
+                  className="aos-item"
+                  data-aos={item.aos}
+                  data-aos-delay={item.delay}
+                  data-aos-duration={item.duration}
+                >
+                  <div className="aos-item__inner">
+                    <h3>{item.id}</h3>
+                    <span>
+                      <span className="lang-zh">{item.textZh}</span>
+                      <span className="lang-en">{item.textEn}</span>
+                    </span>
                   </div>
-                  <div className="aos-item" data-aos="fade-left">
-                    <div className="aos-item__inner">
-                      <h3>8</h3>
-                      <span>
-                        <span className="lang-zh">[动态组件] fade-left</span>
-                        <span className="lang-en">[Dynamic] fade-left</span>
-                      </span>
-                    </div>
-                  </div>
-                  <div className="aos-item" data-aos="zoom-out-down">
-                    <div className="aos-item__inner">
-                      <h3>9</h3>
-                      <span>
-                        <span className="lang-zh">[动态组件] zoom-out-down</span>
-                        <span className="lang-en">[Dynamic] zoom-out-down</span>
-                      </span>
-                    </div>
-                  </div>
-                </>
-              )}
+                </div>
+              ))}
             </div>
           </div>
         );

@@ -4,6 +4,10 @@
 
 ---
 
+> [!NOTE]
+> This library and its documentation have been rewritten and modernized using AI Gemini.
+
+
 [![AOS - Animate on scroll library](https://gabulaideu.github.io/aos/logo.svg)](https://gabulaideu.github.io/aos/)
 
 [![NPM version](https://img.shields.io/npm/v/aos-modern.svg?style=flat)](https://www.npmjs.com/package/aos-modern)

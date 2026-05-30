@@ -71,7 +71,13 @@
     <!-- Hero Section -->
     <section class="hero">
       <div class="hero-text">
-        <span class="badge">AOS Modern v3.0.0</span>
+        <div class="badge-container">
+          <span class="badge">AOS Modern v3</span>
+          <span class="badge badge-gemini">
+            <span class="lang-zh">由 Gemini AI 重写</span>
+            <span class="lang-en">Rewritten by Gemini AI</span>
+          </span>
+        </div>
         <h1>
           <span class="lang-zh">下一代页面滚动揭示动画库</span>
           <span class="lang-en">Next-Gen Scroll Animation Library</span>
@@ -97,15 +103,15 @@
               <div class="mockup-line"></div>
             </div>
             <div class="mockup-item" data-aos="fade-up" data-aos-delay="200" data-aos-duration="600">
-              <div class="mockup-avatar" style="background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));"></div>
+              <div class="mockup-avatar mockup-avatar-purple-blue"></div>
               <div class="mockup-line"></div>
             </div>
             <div class="mockup-item" data-aos="fade-up" data-aos-delay="300" data-aos-duration="600">
-              <div class="mockup-avatar" style="background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));"></div>
+              <div class="mockup-avatar mockup-avatar-blue-cyan"></div>
               <div class="mockup-line"></div>
             </div>
             <div class="mockup-item" data-aos="fade-up" data-aos-delay="400" data-aos-duration="600">
-              <div class="mockup-line-short" style="margin-left: auto;"></div>
+              <div class="mockup-line-short"></div>
             </div>
           </div>
         </div>
@@ -325,13 +331,13 @@
             </div>
           </div>
 
-          <div class="control-row" style="align-items: center; margin-top: 0.5rem;">
+          <div class="control-row control-row-centered">
             <label class="checkbox-label">
               <input type="checkbox" id="onceCheckbox" checked onchange="updatePlayground()">
               <span class="lang-zh">单次触发 (Once)</span>
               <span class="lang-en">Trigger Once</span>
             </label>
-            <button class="btn btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.85rem;" onclick="replayAnimation()">
+            <button class="btn btn-primary btn-replay" onclick="replayAnimation()">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
               <span class="lang-zh">触发动画</span>
               <span class="lang-en">Replay</span>
@@ -457,7 +463,7 @@
           </a>
         </div>
         <div class="footer-copy">
-          <p>Released under the <a href="https://github.com/gabulaideu/aos/blob/master/LICENSE" style="color: #60a5fa;" target="_blank">MIT License</a>. Created for the modern responsive web.</p>
+          <p>Released under the <a href="https://github.com/gabulaideu/aos/blob/next/LICENSE" class="license-link" target="_blank">MIT License</a>. Created for the modern responsive web. <span class="footer-gemini-note"><span class="lang-zh">由 Gemini AI 重写</span><span class="lang-en">Rewritten by Gemini AI</span></span></p>
         </div>
       </div>
     </footer>
@@ -541,8 +547,8 @@
           item.setAttribute('data-aos-once', 'false'); // 多次触发，方便体验滚动
           
           item.innerHTML = `
-            <span style="font-size: 1.1rem; color: #fff; font-weight: 600; margin-bottom: 0.25rem;">${preset.name}</span>
-            <span style="color: var(--text-secondary); font-size: 0.75rem;">${clickText}</span>
+            <span class="wall-item-title">${preset.name}</span>
+            <span class="wall-item-subtitle">${clickText}</span>
           `;
           
           // 点击项可以在游乐场预览

@@ -73,7 +73,7 @@
       <span class="lang-en">Loading Vue runtime…</span>
     </div>
 
-    <div id="app" style="opacity:0;">
+    <div id="app">
       <div class="demo-info">
         <h2>
           <svg width="32" height="32" viewBox="0 0 261.76 226.69" xmlns="http://www.w3.org/2000/svg">
@@ -100,76 +100,21 @@
       </div>
 
       <div class="aos-all">
-        <!-- 字符串传参方式 -->
-        <div class="aos-item" v-aos="'fade-up'">
+        <div v-for="item in items" :key="item.id" class="aos-item" v-aos="item.aos">
           <div class="aos-item__inner">
-            <h3>1</h3>
-            <span>v-aos="'fade-up'"</span>
-          </div>
-        </div>
-
-        <div class="aos-item" v-aos="'fade-down'">
-          <div class="aos-item__inner">
-            <h3>2</h3>
-            <span>v-aos="'fade-down'"</span>
-          </div>
-        </div>
-
-        <!-- 配置对象传参方式 -->
-        <div class="aos-item" v-aos="{ animation: 'zoom-in', delay: 200, duration: 1000 }">
-          <div class="aos-item__inner">
-            <h3>3</h3>
-            <span>v-aos="{animation: 'zoom-in', delay: 200}"</span>
-          </div>
-        </div>
-
-        <div class="aos-item" v-aos="'flip-left'">
-          <div class="aos-item__inner">
-            <h3>4</h3>
-            <span>v-aos="'flip-left'"</span>
-          </div>
-        </div>
-
-        <div class="aos-item" v-aos="{ animation: 'flip-up', once: true }">
-          <div class="aos-item__inner">
-            <h3>5</h3>
-            <span>v-aos="{animation: 'flip-up', once: true}"</span>
-          </div>
-        </div>
-
-        <div class="aos-item" v-aos="'zoom-out-up'">
-          <div class="aos-item__inner">
-            <h3>6</h3>
-            <span>v-aos="'zoom-out-up'"</span>
+            <h3>{{ item.id }}</h3>
+            <span>{{ item.text }}</span>
           </div>
         </div>
 
         <!-- 动态卡片演示 -->
         <template v-if="showExtra">
-          <div class="aos-item" v-aos="'fade-right'">
+          <div v-for="item in extraItems" :key="item.id" class="aos-item" v-aos="item.aos">
             <div class="aos-item__inner">
-              <h3>7</h3>
+              <h3>{{ item.id }}</h3>
               <span>
-                <span class="lang-zh">[动态] v-aos="'fade-right'"</span>
-                <span class="lang-en">[Dynamic] v-aos="'fade-right'"</span>
-              </span>
-            </div>
-          </div>
-          <div class="aos-item" v-aos="'fade-left'">
-            <div class="aos-item__inner">
-              <h3>8</h3>
-              <span>
-                <span class="lang-zh">[动态] v-aos="'fade-left'"</span>
-                <span class="lang-en">[Dynamic] v-aos="'fade-left'"</span>
-              </span>
-            </div>
-          </div>
-          <div class="aos-item" v-aos="{ animation: 'zoom-out-down', duration: 1500 }">
-            <div class="aos-item__inner">
-              <h3>9</h3>
-              <span>
-                <span class="lang-zh">[动态] v-aos="{ animation: 'zoom-out-down' }"</span>
-                <span class="lang-en">[Dynamic] v-aos="{ animation: 'zoom-out-down' }"</span>
+                <span class="lang-zh">{{ item.textZh }}</span>
+                <span class="lang-en">{{ item.textEn }}</span>
               </span>
             </div>
           </div>
@@ -200,7 +145,7 @@
           </a>
         </div>
         <div class="footer-copy">
-          <p>Released under the <a href="https://github.com/gabulaideu/aos/blob/master/LICENSE" style="color: #60a5fa;" target="_blank">MIT License</a>. Created for the modern responsive web.</p>
+          <p>Released under the <a href="https://github.com/gabulaideu/aos/blob/next/LICENSE" class="license-link" target="_blank">MIT License</a>. Created for the modern responsive web. <span class="footer-gemini-note"><span class="lang-zh">由 Gemini AI 重写</span><span class="lang-en">Rewritten by Gemini AI</span></span></p>
         </div>
       </div>
     </footer>
@@ -236,9 +181,38 @@
           const toggleCard = () => {
             showExtra.value = !showExtra.value;
           };
+
+          const items = ref([
+            { id: 1, aos: 'fade-up', text: "v-aos=\"'fade-up'\"" },
+            { id: 2, aos: 'fade-down', text: "v-aos=\"'fade-down'\"" },
+            { id: 3, aos: { animation: 'zoom-in', delay: 200, duration: 1000 }, text: "v-aos=\"{animation: 'zoom-in', delay: 200}\"" },
+            { id: 4, aos: 'flip-left', text: "v-aos=\"'flip-left'\"" },
+            { id: 5, aos: { animation: 'flip-up', once: true }, text: "v-aos=\"{animation: 'flip-up', once: true}\"" },
+            { id: 6, aos: 'zoom-out-up', text: "v-aos=\"'zoom-out-up'\"" },
+            { id: 7, aos: 'fade-up-right', text: "v-aos=\"'fade-up-right'\"" },
+            { id: 8, aos: 'fade-up-left', text: "v-aos=\"'fade-up-left'\"" },
+            { id: 9, aos: 'fade-down-right', text: "v-aos=\"'fade-down-right'\"" },
+            { id: 10, aos: 'fade-down-left', text: "v-aos=\"'fade-down-left'\"" },
+            { id: 11, aos: 'zoom-in-up', text: "v-aos=\"'zoom-in-up'\"" },
+            { id: 12, aos: 'zoom-in-down', text: "v-aos=\"'zoom-in-down'\"" },
+            { id: 13, aos: 'zoom-in-left', text: "v-aos=\"'zoom-in-left'\"" },
+            { id: 14, aos: 'zoom-in-right', text: "v-aos=\"'zoom-in-right'\"" },
+            { id: 15, aos: 'zoom-out', text: "v-aos=\"'zoom-out'\"" },
+            { id: 16, aos: 'zoom-out-left', text: "v-aos=\"'zoom-out-left'\"" },
+            { id: 17, aos: 'zoom-out-right', text: "v-aos=\"'zoom-out-right'\"" },
+          ]);
+
+          const extraItems = ref([
+            { id: 18, aos: 'fade-right', textZh: '[动态] v-aos="\'fade-right\'"', textEn: '[Dynamic] v-aos="\'fade-right\'"' },
+            { id: 19, aos: 'fade-left', textZh: '[动态] v-aos="\'fade-left\'"', textEn: '[Dynamic] v-aos="\'fade-left\'"' },
+            { id: 20, aos: { animation: 'zoom-out-down', duration: 1500 }, textZh: '[动态] v-aos="{ animation: \'zoom-out-down\' }"', textEn: '[Dynamic] v-aos="{ animation: \'zoom-out-down\' }"' }
+          ]);
+
           return {
             showExtra,
-            toggleCard
+            toggleCard,
+            items,
+            extraItems
           };
         }
       });
